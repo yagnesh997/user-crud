@@ -6,7 +6,6 @@ module.exports = class userservice{
     async createuser(User){
         
         const userToAdd = new userModel(User)
-        
         return await userToAdd.save();
     }
 
