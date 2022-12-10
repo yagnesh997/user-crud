@@ -9,8 +9,8 @@ const router = express.Router()
 
 router.post('/create', validate(userValidator.creatOrUpdateUserValidator), UserController.createuser);
 router.get('/user/all', UserController.GetAlluser);
-router.get('/user/userById', UserController.GetuserById);
-router.delete('/delete', UserController.DeleteuserById);
+router.get('/user/:id', UserController.GetuserById);
+router.delete('/delete/:id', UserController.DeleteuserById);
 router.put('/update/:id', validate(userValidator.creatOrUpdateUserValidator), UserController.Updateuser);
 
 module.exports = router;
