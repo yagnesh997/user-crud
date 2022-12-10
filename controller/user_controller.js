@@ -26,7 +26,7 @@ module.exports = class userController{
     }
     
     async GetuserById(req, res, next){
-        const id = req.query.id;
+        const id = req.params.id;
         const result = await Userservice.GetuserById(id);
 
         if(result){
@@ -37,7 +37,7 @@ module.exports = class userController{
     }
     
     async DeleteuserById(req, res, next){
-        const id = req.query.id;
+        const id = req.params.id;
         
         const result = await Userservice.DeleteuserById(id);
 
