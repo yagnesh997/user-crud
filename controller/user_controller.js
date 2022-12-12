@@ -9,7 +9,7 @@ module.exports = class userController{
         const result = await Userservice.createuser(user);
           
         if(result){
-           res.send(result);
+           res.status(202).send(result);
         }else{
             res.status(Status.CREATED).send()
         }
@@ -43,7 +43,7 @@ module.exports = class userController{
         const result = await Userservice.DeleteuserById(id);
 
         if(result){
-           res.send(result);
+           res.status(202).send(result);
         }else{
             res.status(Status.NOT_FOUND).send()
         }
@@ -55,8 +55,8 @@ module.exports = class userController{
         
         const result = await Userservice.Updateuser(id, users);
 
-        if(result){
-           res.send(result);
+        if(result){ 
+           res.status(202).send(result);
         }else{
             res.status(Status.NOT_FOUND).send();
         }
