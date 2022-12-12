@@ -1,5 +1,6 @@
 const userService = require('../services/user_service');
 const Userservice = new userService();
+const Status = require('http-status')
 
 module.exports = class userController{
     
@@ -10,7 +11,7 @@ module.exports = class userController{
         if(result){
            res.send(result);
         }else{
-            res.send("error")
+            res.status(Status.CREATED).send()
         }
     }
     
@@ -32,7 +33,7 @@ module.exports = class userController{
         if(result){
            res.send(result);
         }else{
-            res.send("error")
+            res.status(Status.NOT_FOUND).send()
         }
     }
     
@@ -44,7 +45,7 @@ module.exports = class userController{
         if(result){
            res.send(result);
         }else{
-            res.send("error")
+            res.status(Status.NOT_FOUND).send()
         }
     }
     
@@ -57,7 +58,7 @@ module.exports = class userController{
         if(result){
            res.send(result);
         }else{
-            res.send("error");
+            res.status(Status.NOT_FOUND).send();
         }
     }
 }
