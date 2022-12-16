@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const app = express();
 const config = require('./config/config');
 const userRouter = require('./routes/routes')
-console.log(config);
+
 app.use(express.json());
 app.use(userRouter)
 
