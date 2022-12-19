@@ -8,7 +8,7 @@ const router = express.Router();
 router.route('/').post(validate(userValidation.create), userController.create).get(userController.findAll);
 
 router
-  .route('/:userId')
+  .route('/:id')
   .get(validate(userValidation.findOne), userController.findOne)
   .patch(validate(userValidation.update), userController.update)
   .delete(validate(userValidation.remove), userController.remove);
