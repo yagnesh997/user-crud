@@ -1,64 +1,44 @@
-const userService = require('../services/user_service');
-const Userservice = new userService();
-const Status = require('http-status')
+const httpStatus = require('http-status');
+const catchAsync = require('../utils/catchAsync');
+const ApiError = require('../utils/ApiError');
+const { userService } = require('../services');
 
-module.exports = class userController{
-    
-    async createuser(req, res){
-        let user = req.body;
-        const result = await Userservice.createuser(user);
-          
-        if(result){
-           res.status(202).send(result);
-        }else{
-            res.status(Status.CREATED).send()
-        }
-    }
-    
-    async GetAlluser(req, res, next){
-        let user = req.body;
-        const result = await Userservice.GetAlluser(user);
+const create = catchAsync(async (req, res) => {
+  res.status(httpStatus.CREATED).send(await userService.create(req.body));
+});
 
-        if(result){
-           res.send(result);
-        }else{
-            res.send("error")
-        }
-    }
-    
-    async GetuserById(req, res, next){
-        const id = req.params.id;
-        const result = await Userservice.GetuserById(id);
+const findAll = catchAsync(async (req, res) => {
+  res.send(await userService.findAll());
+});
 
-        if(result){
-           res.send(result);
-        }else{
-            res.status(Status.NOT_FOUND).send()
-        }
-    }
-    
-    async DeleteuserById(req, res, next){
-        const id = req.params.id;
-        
-        const result = await Userservice.DeleteuserById(id);
+const findOne = catchAsync(async (req, res) => {
+  const user = await userService.findOne(req.params.userId)
+  if (!user)
+    res.status(httpStatus.NOT_FOUND).send()
+  else
+    res.send(user);
+});
 
-        if(result){
-           res.status(202).send(result);
-        }else{
-            res.status(Status.NOT_FOUND).send()
-        }
-    }
-    
-    async Updateuser(req, res, next){
-        const id = req.params.id;
-        let users = req.body;
-        
-        const result = await Userservice.Updateuser(id, users);
+const update = catchAsync(async (req, res) => {
+  const user = await userService.update(req.params.userId, req.body)
+  if (!user)
+    res.status(httpStatus.NOT_FOUND).send()
+  else
+    res.send(user);
+});
 
-        if(result){ 
-           res.status(202).send(result);
-        }else{
-            res.status(Status.NOT_FOUND).send();
-        }
-    }
-}
+const remove = catchAsync(async (req, res) => {
+  const user = await userService.remove(req.params.userId)
+  if (!user)
+    res.status(httpStatus.NOT_FOUND).send()
+  else
+    res.send(user);
+});
+
+module.exports = {
+  create,
+  findAll,
+  findOne,
+  update,
+  remove,
+};

@@ -1,30 +1,50 @@
 
 const userModel = require('../models/user_models')
 
-module.exports = class userservice{
-
-    async createuser(User){
-        
-        const userToAdd = new userModel(User)
-        return await userToAdd.save();
-    }
-
-    async GetAlluser(){
-        return await userModel.find({});
-    }
-    
-    async GetuserById(id){
-        return await userModel.findById(id);
-    }
-    
-    async DeleteuserById(id){
-        return await userModel.findByIdAndDelete(id);
-    }
-    
-    async Updateuser(id, user){
-        
-        return await userModel.findByIdAndUpdate(id , user, { new: true });
-        
-    }
-    
-}
+const create = async (user) => {
+    return User.create(user);
+  };
+  
+  /**
+   * Find all user
+   * @returns {Promise<User[]>}
+   */
+  const findAll = async () => {
+    return await User.find().exec();
+  };
+  
+  /**
+   * Find a user by id
+   * @param {Object} id
+   * @returns {Promise<User>}
+   */
+  const findOne = async (id) => {
+    return await User.findOne({ _id: id }).exec();
+  };
+  
+  /**
+   * Update a user by id
+   * @param {Object} id
+   * @returns {Promise<User>}
+   */
+  const update = async (id, user) => {
+    return await User.findOneAndUpdate({ _id: id }, user, { new: true });
+  };
+  
+  /**
+   * Remove a user by id
+   * @param {Object} id
+   * @returns {Promise<User>}
+   */
+  const remove = async (id) => {
+    return await User.findOneAndDelete({ _id: id });
+  };
+  
+  module.exports = {
+    create,
+    findAll,
+    findOne,
+    update,
+    remove,
+  };
+  
