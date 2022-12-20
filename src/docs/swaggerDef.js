@@ -8,7 +8,7 @@ const swaggerDef = {
   },
   servers: [
     {
-      url: `https://expressjs-crud-rest-javascript.herokuapp.com/v1/`,
+      url: `https://user-crud.com/v1/`,
     },
   ],
 };

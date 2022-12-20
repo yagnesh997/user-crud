@@ -13,9 +13,9 @@ components:
           type: string
       example:
         id: 5ebac534954b54139806c112
-        firstName: Jay
-        lastName: Khant
-        phoneNo: "7567676230"
+        firstName: yagnesh  
+        lastName: jogani
+        phoneNo: "8140670393"
 
     Error:
       type: object
