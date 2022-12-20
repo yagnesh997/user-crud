@@ -11,15 +11,15 @@
     "joi-validation": "^2.0.0",
     "mongoose": "^6.7.5",
     "morgan": "^1.10.0",
-    "swagger-jsdoc": "^6.2.5",
+    "swagger-jsdoc": "^6.2.7",
     "swagger-ui-express": "^4.6.0",
     "winston": "^3.8.2"
   },
   "name": "user-crud",
   "version": "1.0.0",
-  "main": "config.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node server",
+    "start": "node src/index.js",
     "dev": "nodemon src/index.js"
   },
   "repository": {

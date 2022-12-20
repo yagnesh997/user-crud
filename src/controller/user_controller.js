@@ -8,6 +8,7 @@ const create = catchAsync(async (req, res) => {
 });
 
 const findAll = catchAsync(async (req, res) => {
+  
   res.send(await userService.findAll());
 });
 
