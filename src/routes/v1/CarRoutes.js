@@ -57,7 +57,7 @@ module.exports = router;
  *         content:
  *           application/json:
  *             schema:
- *                $ref: '#/components/schemas/User'
+ *                $ref: '#/components/schemas/Car'
  *       "400":
  *          description: Valication error
  *
@@ -155,7 +155,7 @@ module.exports = router;
  *         content:
  *           application/json:
  *             schema:
- *                $ref: '#/components/schemas/User'
+ *                $ref: '#/components/schemas/Car'
  *       "404":
  *         $ref: '#/components/responses/NotFound'
  */
