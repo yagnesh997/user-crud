@@ -2,19 +2,19 @@
 
 const mongoose = require('mongoose');
 
-const userSchema = mongoose.Schema(
+const carSchema = mongoose.Schema(
         {
-          firstName: {
+          carName: {
             type: String,
             required: true,
             trim: true,
           },
-          lastName: {
+          color: {
             type: String,
             required: true,
             trim: true,
           },
-          phoneNo: {
+          modalNo: {
             type: String,
             required: true,
             trim: true,
@@ -26,6 +26,6 @@ const userSchema = mongoose.Schema(
       );
       
      
-      const User = mongoose.model('User', userSchema);
+      const Car = mongoose.model('Car', carSchema);
 
-      module.exports = User;
+      module.exports = Car;
