@@ -1,35 +1,35 @@
 const express = require('express');
 const validate = require('../../middlewares/validate');
-const userValidation = require('../../validation/UserValidation');
-const userController = require('../../controller/UserController');
+const carValidation = require('../../validation/CarValidation');
+const carController = require('../../controller/CarController');
 
 const router = express.Router();
 
-router.route('/').post(validate(userValidation.create), userController.create)
-router.route('/alluser').get(userController.findAll);
+router.route('/').post(validate(carValidation.create), carController.create)
+router.route('/allcar').get(carController.findAll);
 
 
 router
-  .route('/:userId')
-  .get(validate(userValidation.findOne), userController.findOne)
-  .patch(validate(userValidation.update), userController.update)
-  .delete(validate(userValidation.remove), userController.remove);
+  .route('/:carId')
+  .get(validate(carValidation.findOne), carController.findOne)
+  .patch(validate(carValidation.update), carController.update)
+  .delete(validate(carValidation.remove), carController.remove);
 
 module.exports = router;
 
 /**
  * @swagger
  * tags:
- *   name: Users
- *   description: User crud
+ *   name: Cars
+ *   description: Car crud
  */
 
 /**
  * @swagger
- * /users:
+ * /cars:
  *   post:
- *     summary: Create a user
- *     tags: [Users]
+ *     summary: Create a car
+ *     tags: [Cars]
  *     requestBody:
  *       required: true
  *       content:
@@ -37,20 +37,20 @@ module.exports = router;
  *           schema:
  *             type: object
  *             required:
- *               - firstName
- *               - lastName
- *               - phoneNo
+ *               - carName
+ *               - color
+ *               - modalNo
  *             properties:
- *               firstName:
+ *               carName:
  *                 type: string
- *               lastName:
+ *               color:
  *                 type: string
- *               phoneNo:
+ *               modalNo:
  *                 type: string
  *             example:
- *               firstName: yagnesh
- *               lastName: jogani
- *               phoneNo: "8140670393"
+ *               carName: virtus
+ *               color: blur
+ *               modalNo: "2023"
  *     responses:
  *       "201":
  *         description: Created
@@ -62,8 +62,8 @@ module.exports = router;
  *          description: Valication error
  *
  *   get:
- *     summary: Get all users
- *     tags: [Users]
+ *     summary: Get all cars
+ *     tags: [Cars]
  *     responses:
  *       "200":
  *         description: OK
@@ -72,42 +72,42 @@ module.exports = router;
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/User'  
+ *                 $ref: '#/components/schemas/Car'  
  */
 
 /**
  * @swagger
- * /users/{id}:
+ * /cars/{id}:
  *   get:
- *     summary: Get a user by id
- *     tags: [Users]
+ *     summary: Get a car by id
+ *     tags: [Cars]
  *     parameters:
  *       - in: path
  *         name: id
  *         required: true
  *         schema:
  *           type: string
- *         description: User id
+ *         description: Car id
  *     responses:
  *       "200":
  *         description: OK
  *         content:
  *           application/json:
  *             schema:
- *                $ref: '#/components/schemas/User'
+ *                $ref: '#/components/schemas/Car'
  *       "404":
  *         $ref: '#/components/responses/NotFound'
  *
  *   patch:
- *     summary: Update a user
- *     tags: [Users]
+ *     summary: Update a car
+ *     tags: [Cars]
  *     parameters:
  *       - in: path
  *         name: id
  *         required: true
  *         schema:
  *           type: string
- *         description: User id
+ *         description: Car id
  *     requestBody:
  *       required: true
  *       content:
@@ -115,40 +115,40 @@ module.exports = router;
  *           schema:
  *             type: object
  *             required:
- *               - firstName
- *               - lastName
- *               - phoneNo
+ *               - carName
+ *               - color
+ *               - modalNo
  *             properties:
- *               firstName:
+ *               carName:
  *                 type: string
- *               lastName:
+ *               color:
  *                 type: string
- *               phoneNo:
+ *               modalNo:
  *                 type: string
  *             example:
- *               firstName: yagnesh
- *               lastName: jogani
- *               phoneNo: "8140670393"
+ *               carName: virtus
+ *               color: blur
+ *               modalNo: "2023"
  *     responses:
  *       "200":
  *         description: OK
  *         content:
  *           application/json:
  *             schema:
- *                $ref: '#/components/schemas/User'
+ *                $ref: '#/components/schemas/Car'
  *       "404":
  *         $ref: '#/components/responses/NotFound'
  *
  *   delete:
- *     summary: Delete a user
- *     tags: [Users]
+ *     summary: Delete a car
+ *     tags: [Cars]
  *     parameters:
  *       - in: path
  *         name: id
  *         required: true
  *         schema:
  *           type: string
- *         description: User id
+ *         description: Car id
  *     responses:
  *       "200":
  *         description: No content
