@@ -11,6 +11,7 @@ const envVarsSchema = Joi.object()
  
     PORT: Joi.number().default(3003),
     DB_HOST: Joi.string().required(),
+    
    
   })
   .unknown();
@@ -25,5 +26,6 @@ if (error) {
 module.exports = {
     env: envVars.NODE_ENV,
     port: envVars.PORT,
-    connectionString : process.env.CONNECTION_STRING
+    connectionString : process.env.CONNECTION_STRING,
+    secretkey : process.env.SECRET_KEY
 };

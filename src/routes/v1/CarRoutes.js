@@ -2,18 +2,19 @@ const express = require('express');
 const validate = require('../../middlewares/validate');
 const carValidation = require('../../validation/CarValidation');
 const carController = require('../../controller/CarController');
+const auth = require('../../middlewares/auth')
 
 const router = express.Router();
 
-router.route('/').post(validate(carValidation.create), carController.create)
-router.route('/allcar').get(carController.findAll);
+router.route('/').post(auth,validate(carValidation.create), carController.create)
+router.route('/allcar').get(auth,carController.findAll);
 
 
 router
   .route('/:carId')
-  .get(validate(carValidation.findOne), carController.findOne)
-  .patch(validate(carValidation.update), carController.update)
-  .delete(validate(carValidation.remove), carController.remove);
+  .get(auth,validate(carValidation.findOne), carController.findOne)
+  .patch(auth,validate(carValidation.update), carController.update)
+  .delete(auth,validate(carValidation.remove), carController.remove);
 
 module.exports = router;
 
