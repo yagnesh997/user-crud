@@ -1,6 +1,5 @@
 const jwt = require("jsonwebtoken");
-require('dotenv').config()
-const SECRET_KEY = process.env.SECRET_KEY;
+const config = require('../config/config');
 
 const auth = (req, res, next)=>{
 
@@ -9,7 +8,7 @@ const auth = (req, res, next)=>{
         let token = req.headers.authorization;
         if(token){
             token = token.split(" ")[1];
-            let car = jwt.verify(token, SECRET_KEY );
+            let car = jwt.verify(token, config.secretkey );
             req.carId = car.id;
         }
         else{

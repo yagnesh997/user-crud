@@ -1,8 +1,7 @@
 const authModel = require("../models/auth");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-require('dotenv').config()
-const SECRET_KEY = process.env.SECRET_KEY;
+const config = require('../config/config');
 
 const signup = async (req, res) =>{
 
@@ -21,7 +20,7 @@ const signup = async (req, res) =>{
             password: hashedPassword
         });
 
-        const token = jwt.sign({email : result.email, id : result._id }, SECRET_KEY);
+        const token = jwt.sign({email : result.email, id : result._id }, config.secretkey);
         res.status(201).json({user: result, token: token});
         
     } catch (error) {
@@ -48,7 +47,7 @@ const signin = async (req, res)=>{
             return res.status(400).json({message : "Invalid Credentials"});
         }
 
-        const token = jwt.sign({email : existingUser.email, id : existingUser._id }, SECRET_KEY);
+        const token = jwt.sign({email : existingUser.email, id : existingUser._id }, config.secretkey);
         res.status(200).json({user: existingUser, token: token});
 
 
