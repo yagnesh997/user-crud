@@ -16,7 +16,7 @@ const defaultRoutes = [
     route: carRoute,
   },
   {
-    path: '/',
+    path: '/auth',
     route: authRoute,
   }
 ];
