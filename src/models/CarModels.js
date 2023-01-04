@@ -19,6 +19,11 @@ const carSchema = mongoose.Schema(
             required: true,
             trim: true,
           },
+          userId : {
+            type : mongoose.Schema.Types.ObjectId,
+            ref: "auth",
+            required: true,
+        }
         },
         {
           timestamps: true,

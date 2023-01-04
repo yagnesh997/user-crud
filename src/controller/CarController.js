@@ -2,38 +2,89 @@ const httpStatus = require('http-status');
 const catchAsync = require('../utils/catchAsync');
 const ApiError = require('../utils/ApiError');
 const { carService } = require('../services');
+const carModels = require("../models/CarModels")
 
 const create = catchAsync(async (req, res) => {
-  res.status(httpStatus.CREATED).send(await carService.create(req.body));
+  
+  const {carName, color, modalNo } = req.body;
+
+    const newcar = new carModels({
+        carName: carName,
+        color : color,
+        modalNo: modalNo,
+        userId : req.userId,
+    });
+
+    try {
+        
+        await newcar.save();
+        res.status(201).json(newcar);
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({message: "Something went wrong"});
+    }
 });
 
 const findAll = catchAsync(async (req, res) => {
   
-  res.send(await carService.findAll());
+  // res.send(await carService.findAll());
+  try {
+        
+    const cars = await carModels.find({userId : req.userId});
+    res.status(200).json(cars);
+
+} catch (error) {
+    console.log(error);
+    res.status(500).json({message: "Something went wrong"});
+}
 });
 
 const findOne = catchAsync(async (req, res) => {
-  const car = await carService.findOne(req.params.carId)
-  if (!car)
-    res.status(httpStatus.NOT_FOUND).send()
-  else
-    res.send(car);
+  try {
+        
+    const cars = await carModels.findOne({carId : req.carId});
+    res.status(200).json(cars);
+
+} catch (error) {
+    console.log(error);
+    res.status(500).json({message: "Something went wrong"});
+}
 });
 
 const update = catchAsync(async (req, res) => {
-  const car = await carService.update(req.params.carId, req.body)
-  if (!car)
-    res.status(httpStatus.NOT_FOUND).send()
-  else
-    res.send(car);
+  const id = req.params.carId;
+  const {carName, color, modalNo } = req.body;
+
+  const newcar = {
+      carName: carName,
+      color : color,
+      modalNo: modalNo,
+      userId : req.userId,
+  };
+
+    try {
+        await carModels.findByIdAndUpdate(id, newcar, {new : true});
+        res.status(200).json(newcar);
+        
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({message: "Something went wrong"});
+    }
+
 });
 
 const remove = catchAsync(async (req, res) => {
-  const car = await carService.remove(req.params.carId)
-  if (!car)
-    res.status(httpStatus.NOT_FOUND).send()
-  else
-    res.send(car);
+  const id = req.params.carId;
+    try {
+        
+        const car = await carModels.findByIdAndRemove(id);
+        res.status(202).json(car);
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({message: "Something went wrong"});
+    }
 });
 
 module.exports = {

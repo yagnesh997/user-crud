@@ -7,8 +7,7 @@ const auth = require('../../middlewares/auth')
 const router = express.Router();
 
 router.route('/').post(auth,validate(carValidation.create), carController.create)
-router.route('/allcar').get(auth,carController.findAll);
-
+router.route('/car/:carId').get(auth,carController.findAll);
 
 router
   .route('/:carId')
