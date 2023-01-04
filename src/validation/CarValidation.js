@@ -28,7 +28,7 @@ const update = {
     .min(1),
 };
 
-const remove = {
+const findByIdAndRemove = {
   params: Joi.object().keys({
     carId: Joi.string().custom(objectId),
   }),
@@ -38,5 +38,5 @@ module.exports = {
   create,
   findOne,
   update,
-  remove,
+  findByIdAndRemove,
 };
