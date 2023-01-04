@@ -8,8 +8,8 @@ const auth = (req, res, next)=>{
         let token = req.headers.authorization;
         if(token){
             token = token.split(" ")[1];
-            let car = jwt.verify(token, config.secretkey );
-            req.carId = car.id;
+            let user = jwt.verify(token, config.secretkey );
+            req.userId = user.id;
         }
         else{
             return res.status(401).json({message: "Unauthorized User"});
