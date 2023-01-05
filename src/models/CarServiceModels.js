@@ -1,7 +1,7 @@
 
 const mongoose = require('mongoose');
 
-const carScSchema = mongoose.Schema(
+const carServiceSchema = mongoose.Schema(
         {
           startDate: {
             type: String,
@@ -35,6 +35,6 @@ const carScSchema = mongoose.Schema(
       );
       
      
-      const CarSc = mongoose.model('CarSc', carScSchema);
+      const CarService = mongoose.model('CarService', carServiceSchema);
 
-      module.exports = CarSc;
+      module.exports = CarService;

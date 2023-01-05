@@ -3,7 +3,7 @@ const userRoute = require('./UserRoutes');
 const carRoute = require('./CarRoutes');
 const docsRoute = require('./docsRoute');
 const authRoute = require('./authRoutes');
-const carscRoute = require('./CarScRouter');
+const carscRoute = require('./CarServiceRouter');
 
 const router = express.Router();
 
