@@ -5,7 +5,7 @@ const config = require('../config/config');
 
 const signup = async (req, res) =>{
 
-    const {email, password} = req.body;
+    const {username, type, email, password} = req.body;
     try {
 
         const existingUser = await authModel.findOne({ email : email});
@@ -16,6 +16,8 @@ const signup = async (req, res) =>{
         const hashedPassword = await bcrypt.hash(password, 10);
 
         const result = await authModel.create({
+            username: username,
+            type: type,
             email: email,
             password: hashedPassword
         });
