@@ -1,1 +1,1 @@
-module.exports.User = require('./UserModels');
+module.exports.User = require('./UserModels')

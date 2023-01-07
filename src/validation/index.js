@@ -1,2 +1,2 @@
-module.exports.userValidation = require('./UserValidation');
-module.exports.userValidation = require('./CarValidation');
+module.exports.userValidation = require('./UserValidation')
+module.exports.userValidation = require('./CarValidation')
