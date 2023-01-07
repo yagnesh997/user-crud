@@ -1,21 +1,20 @@
-const express = require('express');
-const validate = require('../../middlewares/validate');
-const userValidation = require('../../validation/UserValidation');
-const userController = require('../../controller/UserController');
+const express = require('express')
+const validate = require('../../middlewares/validate')
+const userValidation = require('../../validation/UserValidation')
+const userController = require('../../controller/UserController')
 
-const router = express.Router();
+const router = express.Router()
 
 router.route('/').post(validate(userValidation.create), userController.create)
-router.route('/alluser').get(userController.findAll);
-
+router.route('/alluser').get(userController.findAll)
 
 router
   .route('/:userId')
   .get(validate(userValidation.findOne), userController.findOne)
   .patch(validate(userValidation.update), userController.update)
-  .delete(validate(userValidation.remove), userController.remove);
+  .delete(validate(userValidation.remove), userController.remove)
 
-module.exports = router;
+module.exports = router
 
 /**
  * @swagger
@@ -50,29 +49,29 @@ module.exports = router;
  *             example:
  *               firstName: yagnesh
  *               lastName: jogani
- *               phoneNo: "8140670393"
+ *               phoneNo: '8140670393'
  *     responses:
- *       "201":
+ *       '201':
  *         description: Created
  *         content:
  *           application/json:
  *             schema:
  *                $ref: '#/components/schemas/User'
- *       "400":
+ *       '400':
  *          description: Valication error
  *
  *   get:
  *     summary: Get all users
  *     tags: [Users]
  *     responses:
- *       "200":
+ *       '200':
  *         description: OK
  *         content:
  *           application/json:
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/User'  
+ *                 $ref: '#/components/schemas/User'
  */
 
 /**
@@ -89,13 +88,13 @@ module.exports = router;
  *           type: string
  *         description: User id
  *     responses:
- *       "200":
+ *       '200':
  *         description: OK
  *         content:
  *           application/json:
  *             schema:
  *                $ref: '#/components/schemas/User'
- *       "404":
+ *       '404':
  *         $ref: '#/components/responses/NotFound'
  *
  *   patch:
@@ -128,15 +127,15 @@ module.exports = router;
  *             example:
  *               firstName: yagnesh
  *               lastName: jogani
- *               phoneNo: "8140670393"
+ *               phoneNo: '8140670393'
  *     responses:
- *       "200":
+ *       '200':
  *         description: OK
  *         content:
  *           application/json:
  *             schema:
  *                $ref: '#/components/schemas/User'
- *       "404":
+ *       '404':
  *         $ref: '#/components/responses/NotFound'
  *
  *   delete:
@@ -150,12 +149,12 @@ module.exports = router;
  *           type: string
  *         description: User id
  *     responses:
- *       "200":
+ *       '200':
  *         description: No content
  *         content:
  *           application/json:
  *             schema:
  *                $ref: '#/components/schemas/User'
- *       "404":
+ *       '404':
  *         $ref: '#/components/responses/NotFound'
  */

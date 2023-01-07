@@ -1,21 +1,23 @@
-const express = require('express');
-const validate = require('../../middlewares/validate');
-const carValidation = require('../../validation/CarValidation');
-const carController = require('../../controller/CarController');
+const express = require('express')
+const validate = require('../../middlewares/validate')
+const carValidation = require('../../validation/CarValidation')
+const carController = require('../../controller/CarController')
 const auth = require('../../middlewares/auth')
 
-const router = express.Router();
+const router = express.Router()
 
-router.route('/').post(auth,validate(carValidation.create), carController.create)
-router.route('/car/:carId').get(auth,carController.findAll);
+router
+  .route('/')
+  .post(auth, validate(carValidation.create), carController.create)
+router.route('/car/:carId').get(auth, carController.findAll)
 
 router
   .route('/:carId')
-  .get(auth,validate(carValidation.findOne), carController.findOne)
-  .patch(auth,validate(carValidation.update), carController.update)
-  .delete(auth,validate(carValidation.remove), carController.remove);
+  .get(auth, validate(carValidation.findOne), carController.findOne)
+  .patch(auth, validate(carValidation.update), carController.update)
+  .delete(auth, validate(carValidation.remove), carController.remove)
 
-module.exports = router;
+module.exports = router
 
 /**
  * @swagger
@@ -50,29 +52,29 @@ module.exports = router;
  *             example:
  *               carName: virtus
  *               color: blur
- *               modalNo: "2023"
+ *               modalNo: '2023'
  *     responses:
- *       "201":
+ *       '201':
  *         description: Created
  *         content:
  *           application/json:
  *             schema:
  *                $ref: '#/components/schemas/Car'
- *       "400":
+ *       '400':
  *          description: Valication error
  *
  *   get:
  *     summary: Get all cars
  *     tags: [Cars]
  *     responses:
- *       "200":
+ *       '200':
  *         description: OK
  *         content:
  *           application/json:
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/Car'  
+ *                 $ref: '#/components/schemas/Car'
  */
 
 /**
@@ -89,13 +91,13 @@ module.exports = router;
  *           type: string
  *         description: Car id
  *     responses:
- *       "200":
+ *       '200':
  *         description: OK
  *         content:
  *           application/json:
  *             schema:
  *                $ref: '#/components/schemas/Car'
- *       "404":
+ *       '404':
  *         $ref: '#/components/responses/NotFound'
  *
  *   patch:
@@ -128,15 +130,15 @@ module.exports = router;
  *             example:
  *               carName: virtus
  *               color: blur
- *               modalNo: "2023"
+ *               modalNo: '2023'
  *     responses:
- *       "200":
+ *       '200':
  *         description: OK
  *         content:
  *           application/json:
  *             schema:
  *                $ref: '#/components/schemas/Car'
- *       "404":
+ *       '404':
  *         $ref: '#/components/responses/NotFound'
  *
  *   delete:
@@ -150,12 +152,12 @@ module.exports = router;
  *           type: string
  *         description: Car id
  *     responses:
- *       "200":
+ *       '200':
  *         description: No content
  *         content:
  *           application/json:
  *             schema:
  *                $ref: '#/components/schemas/Car'
- *       "404":
+ *       '404':
  *         $ref: '#/components/responses/NotFound'
  */
