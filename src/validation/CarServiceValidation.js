@@ -12,7 +12,7 @@ const create = {
 
 const findOne = {
   params: Joi.object().keys({
-    carId: Joi.string().custom(objectId)
+    CarServiceId: Joi.string().custom(objectId)
   })
 }
 

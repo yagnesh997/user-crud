@@ -16,7 +16,7 @@ router
 router.route('/carsc/:carscId').get(auth, carServiceController.findAll)
 
 router
-  .route('/:carId')
+  .route('/:CarServiceId')
   .get(
     auth,
     validate(carServiceValidation.findOne),
