@@ -36,8 +36,7 @@ const findAll = catchAsync(async (req, res) => {
           foreignField: '_id',
           as: 'carId',
           pipeline: [
-            { $project: { _id: { carname: '$carName', color: '$color' } } },
-            { $replaceRoot: { newRoot: '$_id' } }
+            { $project: { _id: { carname: '$carName', color: '$color' } } }
           ]
         }
       },
@@ -48,8 +47,7 @@ const findAll = catchAsync(async (req, res) => {
           foreignField: '_id',
           as: 'serviceMan',
           pipeline: [
-            { $project: { _id: { name: '$username' } } },
-            { $replaceRoot: { newRoot: '$_id' } }
+            { $project: { _id: { name: '$username' } } }
           ]
         }
       },
@@ -60,8 +58,7 @@ const findAll = catchAsync(async (req, res) => {
           foreignField: '_id',
           as: 'serviceType',
           pipeline: [
-            { $project: { _id: { name: '$name' } } },
-            { $replaceRoot: { newRoot: '$_id' } }
+            { $project: { _id: { name: '$name' } } }
           ]
         }
       }
